@@ -147,6 +147,7 @@ add_library(${NAME}_version
 		"${CMAKE_CURRENT_BINARY_DIR}/${NAME}_version/${NAME}_version.h"
 		"${CMAKE_CURRENT_BINARY_DIR}/${NAME}_version/${NAME}_version.c"
 )
+target_include_directories(${NAME}_version PUBLIC "${CMAKE_CURRENT_BINARY_DIR}/${NAME}_version")
 endfunction()
 
 endif()
