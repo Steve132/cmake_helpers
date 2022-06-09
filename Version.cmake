@@ -10,7 +10,7 @@ endfunction()
 
 function(_version_git_tag VAROUT GROOT)
 	execute_process(COMMAND git rev-parse --short=8 HEAD
-		WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+		WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
 		OUTPUT_VARIABLE VARTMP
 	)
 	string(LENGTH "${VARTMP}" VRLEN)
@@ -24,7 +24,7 @@ endfunction()
 
 function(_version_git_branch VAROUT GROOT)
 	execute_process(COMMAND git rev-parse --abbrev-ref HEAD
-		WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+		WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
 		OUTPUT_VARIABLE VARTMP
 	)
 	string(LENGTH "${VARTMP}" VRLEN)
@@ -38,7 +38,7 @@ endfunction()
 
 function(_version_git_fullref VAROUT GROOT)
 	execute_process(COMMAND git rev-parse --symbolic-full-name HEAD
-		WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+		WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
 		OUTPUT_VARIABLE VARTMP
 	)
 	string(LENGTH "${VARTMP}" VRLEN)
