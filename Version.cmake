@@ -1,4 +1,4 @@
-message(FATAL_ERROR "FAILED!")
+
 function(_version_tag_ctransform VTAG TAGOUT)
 	foreach(i RANGE 0 61 2)
 		string(SUBSTRING ${VTAG} ${i} 2 VPART)
