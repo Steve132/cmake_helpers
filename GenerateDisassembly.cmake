@@ -1,4 +1,4 @@
-function(target_generate_disassembly)
+function(target_generate_disassembly TARG)
     #do standard cmake parser
     #set(options DO_FILTER)
     #set(oneValueArgs "")
@@ -14,13 +14,11 @@ function(target_generate_disassembly)
 
     set(OBJDUMP_OPTS --no-addresses --no-show-raw-insn --source -l -C --visualize-jumps -d)
         
-    foreach(TARG ${VIEW_DISASSEMBLY_TARGETS})
-        set(OUTPUT_GEXPR "$<TARGET_FILE:${TARG}>.view.s")
-        add_custom_command(TARGET ${TARG} POST_BUILD
-            COMMAND ${CMAKE_OBJDUMP} ${OBJDUMP_OPTS} $<TARGET_OBJECTS:${TARG}> > ${OUTPUT_GEXPR}
-            #BYPRODUCTS ${OUTPUT_GEXPR}
-            COMMENT "Disassembling ${TARG} to ${OUTPUT_GEXPR}"
-            VERBATIM
-        )
-    endforeach()
+    set(OUTPUT_GEXPR "$<TARGET_FILE:${TARG}>.view.s")
+    add_custom_command(TARGET ${TARG} POST_BUILD
+        COMMAND ${CMAKE_OBJDUMP} ${OBJDUMP_OPTS} $<TARGET_OBJECTS:${TARG}> > ${OUTPUT_GEXPR}
+        #BYPRODUCTS ${OUTPUT_GEXPR}
+        COMMENT "Disassembling ${TARG} to ${OUTPUT_GEXPR}"
+        VERBATIM
+    )
 endfunction()
